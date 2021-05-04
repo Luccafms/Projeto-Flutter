@@ -31,7 +31,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     ),
                     Container(height: 20,),
-                  TextField(
+                    Card(
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 12, right: 12, top: 20, bottom: 12), 
+                        child: Column(
+                          children: [
+                            TextField(
                     onChanged: (text){
                       email = text;
                     },
@@ -53,9 +58,10 @@ class _LoginPageState extends State<LoginPage> {
                       border: OutlineInputBorder(),
                       ),
                   ),
-
                   SizedBox(height: 15),
                   RaisedButton(
+                    textColor: Colors.white,
+                    color: Colors.black,
                     onPressed: () {
                       if(email == 'luccafms@gmail.com' && password == '123') {
                         Navigator.of(context).pushReplacementNamed('/home');
@@ -63,8 +69,15 @@ class _LoginPageState extends State<LoginPage> {
                         print('login inválido');
                       }
                     },
-                    child: Text('Entrar'),
+                    child: Container(
+                      width: double.infinity,
+                      child: Text('Entrar', textAlign: TextAlign.center,),
+                    ),
                   ),
+                        ],),
+                      )),
+                  
+                  
                 ] ,
                 ),
               ),
@@ -77,7 +90,20 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: 
+      body: Stack(
+        children:[
+          SizedBox(
+            height: MediaQuery.of(context).size.height,
+            child: Image.asset(
+            'assets/images/background.jpg', 
+            fit: BoxFit.cover,
+            )),
+            Container(
+              color: Colors.black.withOpacity(0.3),
+            ),
+          _body(),
+        ]
+      )
     );
   }
 }
